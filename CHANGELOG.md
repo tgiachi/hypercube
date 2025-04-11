@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="0.0.4"></a>
+## [0.0.4](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.4) (2025-04-11)
+
+### Features
+
+* **HyperCube.Postman.csproj:** update version from 0.0.1 to 0.0.2 for release ([00568b9](https://www.github.com/tgiachi/hypercube/commit/00568b99e2efe06bcf95887a15d7449f90181a24))
+* **Hypercube.sln:** add HyperCube.Postman project to the solution ([e1d9943](https://www.github.com/tgiachi/hypercube/commit/e1d99437851b6d85ad43276b89b43757e5d7cf1f))
+* **HyperPostmanConfig.cs:** remove unused properties ContinueOnError, TimeoutMilliseconds, ([69bbc08](https://www.github.com/tgiachi/hypercube/commit/69bbc088075ddbf86eebfb2f756c8d40026e3416))
+* **RegisterPostmanServiceExtension.cs:** rename RegisterPostmanService method to AddPostman for better clarity and consistency ([51ff069](https://www.github.com/tgiachi/hypercube/commit/51ff069d10dd1fbd563e18b5fdba3aaa753f11e7))
+
 <a name="0.0.2"></a>
 ## [0.0.2](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.2) (2025-04-11)
 

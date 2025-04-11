@@ -9,10 +9,10 @@ namespace HyperCube.Core.Utils;
 /// </summary>
 public static partial class StringUtils
 {
-    
+
     [GeneratedRegex(@"[\s_-]|(?<=[a-z])(?=[A-Z])", RegexOptions.Compiled)]
     private static partial Regex WordSplitter();
-    
+
     private static readonly Regex WordSplitterRegex = WordSplitter();
 
     /// <summary>
@@ -28,18 +28,32 @@ public static partial class StringUtils
     /// </example>
     public static string ToSnakeCase(string text)
     {
-        if (string.IsNullOrEmpty(text)) throw new ArgumentNullException(nameof(text));
+        if (string.IsNullOrEmpty(text))
+        {
+            throw new ArgumentNullException(nameof(text));
+        }
 
-        if (text.Length < 2) return text.ToLowerInvariant();
+        if (text.Length < 2)
+        {
+            return text.ToLowerInvariant();
+        }
+
+        text = text.Replace('-', '_');
 
         var sb = new StringBuilder();
         sb.Append(char.ToLowerInvariant(text[0]));
+
         for (var i = 1; i < text.Length; ++i)
         {
             var c = text[i];
+            var prev = text[i - 1];
+
             if (char.IsUpper(c))
             {
-                sb.Append('_');
+                if (!char.IsUpper(prev) || (i + 1 < text.Length && !char.IsUpper(text[i + 1])))
+                {
+                    sb.Append('_');
+                }
                 sb.Append(char.ToLowerInvariant(c));
             }
             else
@@ -70,11 +84,11 @@ public static partial class StringUtils
 
         var words = WordSplitterRegex.Split(text);
         var result = new StringBuilder(words[0].ToLowerInvariant());
-        
+
         for (int i = 1; i < words.Length; i++)
         {
             if (string.IsNullOrEmpty(words[i])) continue;
-            
+
             result.Append(CultureInfo.InvariantCulture.TextInfo.ToTitleCase(words[i].ToLowerInvariant()));
         }
 
@@ -100,11 +114,11 @@ public static partial class StringUtils
 
         var words = WordSplitterRegex.Split(text);
         var result = new StringBuilder();
-        
+
         foreach (var word in words)
         {
             if (string.IsNullOrEmpty(word)) continue;
-            
+
             result.Append(CultureInfo.InvariantCulture.TextInfo.ToTitleCase(word.ToLowerInvariant()));
         }
 
@@ -130,17 +144,17 @@ public static partial class StringUtils
 
         var words = WordSplitterRegex.Split(text);
         var result = new StringBuilder();
-        
+
         bool isFirst = true;
         foreach (var word in words)
         {
             if (string.IsNullOrEmpty(word)) continue;
-            
+
             if (!isFirst)
             {
                 result.Append('-');
             }
-            
+
             result.Append(word.ToLowerInvariant());
             isFirst = false;
         }
@@ -181,17 +195,17 @@ public static partial class StringUtils
 
         var words = WordSplitterRegex.Split(text);
         var result = new StringBuilder();
-        
+
         bool isFirst = true;
         foreach (var word in words)
         {
             if (string.IsNullOrEmpty(word)) continue;
-            
+
             if (!isFirst)
             {
                 result.Append(' ');
             }
-            
+
             result.Append(CultureInfo.InvariantCulture.TextInfo.ToTitleCase(word.ToLowerInvariant()));
             isFirst = false;
         }
@@ -199,5 +213,5 @@ public static partial class StringUtils
         return result.ToString();
     }
 
-  
+
 }

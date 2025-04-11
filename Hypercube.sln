@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperCube.Core", "src\HyperCube.Core\HyperCube.Core.csproj", "{D00AF90C-1B3A-46A7-AB01-7397FF46B8C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperCube.Tests", "tests\HyperCube.Tests\HyperCube.Tests.csproj", "{7A668593-A5EB-4EC5-A183-6DD3EE21EFB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{D00AF90C-1B3A-46A7-AB01-7397FF46B8C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D00AF90C-1B3A-46A7-AB01-7397FF46B8C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D00AF90C-1B3A-46A7-AB01-7397FF46B8C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A668593-A5EB-4EC5-A183-6DD3EE21EFB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A668593-A5EB-4EC5-A183-6DD3EE21EFB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A668593-A5EB-4EC5-A183-6DD3EE21EFB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A668593-A5EB-4EC5-A183-6DD3EE21EFB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

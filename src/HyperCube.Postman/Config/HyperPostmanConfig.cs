@@ -14,26 +14,4 @@ public class HyperPostmanConfig
     /// </remarks>
     public int MaxConcurrentTasks { get; set; } = 0;
 
-    /// <summary>
-    /// Gets or sets whether to continue dispatching other events when one fails.
-    /// </summary>
-    public bool ContinueOnError { get; set; } = true;
-
-    /// <summary>
-    /// Gets or sets the timeout in milliseconds for event handling.
-    /// </summary>
-    /// <remarks>
-    /// Set to 0 for no timeout.
-    /// </remarks>
-    public int TimeoutMilliseconds { get; set; } = 30000;
-
-    /// <summary>
-    /// Gets or sets whether to buffer events if dispatch is busy.
-    /// </summary>
-    public bool BufferEvents { get; set; } = true;
-
-    /// <summary>
-    /// Gets or sets the maximum size of the event buffer when BufferEvents is true.
-    /// </summary>
-    public int MaxBufferSize { get; set; } = 1000;
 }

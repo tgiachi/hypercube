@@ -29,8 +29,7 @@ public class HyperPostmanIntegrationTests
             options =>
             {
                 options.MaxConcurrentTasks = 4;
-                options.ContinueOnError = true;
-                options.BufferEvents = true;
+
             }
         );
 
@@ -44,8 +43,8 @@ public class HyperPostmanIntegrationTests
         // Get the postman service
         _postmanService = _serviceProvider.GetRequiredService<IHyperPostmanService>();
 
-        _postmanService.RegisterListener(_testListener);
-        _postmanService.RegisterListener(_orderListener);
+        _postmanService.Subscribe(_testListener);
+        _postmanService.Subscribe(_orderListener);
     }
 
     [TearDown]
@@ -121,7 +120,7 @@ public class HyperPostmanIntegrationTests
 
         // Create a slow processor that will wait for a signal
         var slowProcessor = new SlowProcessingEventListener(startEvent, completedEvents);
-        _postmanService.RegisterListener<SlowProcessingEvent>(slowProcessor);
+        _postmanService.Subscribe<SlowProcessingEvent>(slowProcessor);
 
         // Create 10 events and dispatch them
         for (int i = 0; i < 10; i++)

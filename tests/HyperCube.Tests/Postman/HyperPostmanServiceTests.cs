@@ -21,10 +21,6 @@ public class HyperPostmanServiceTests : IDisposable
         _config = new HyperPostmanConfig
         {
             MaxConcurrentTasks = 4,
-            ContinueOnError = true,
-            TimeoutMilliseconds = 5000,
-            BufferEvents = true,
-            MaxBufferSize = 100
         };
 
 
@@ -38,7 +34,7 @@ public class HyperPostmanServiceTests : IDisposable
         var listener = new TestEventListener();
 
         // Act
-        _service.RegisterListener<TestEvent>(listener);
+        _service.Subscribe<TestEvent>(listener);
 
         // Assert
         Assert.That(_service.GetListenerCount<TestEvent>(), Is.EqualTo(1));
@@ -53,14 +49,14 @@ public class HyperPostmanServiceTests : IDisposable
         var listener3 = new AnotherTestEventListener();
 
         // Act
-        _service.RegisterListener<TestEvent>(listener1);
-        _service.RegisterListener<TestEvent>(listener2);
-        _service.RegisterListener<AnotherTestEvent>(listener3);
+        _service.Subscribe<TestEvent>(listener1);
+        _service.Subscribe<TestEvent>(listener2);
+        _service.Subscribe<AnotherTestEvent>(listener3);
 
         // Assert
         Assert.That(_service.GetListenerCount<TestEvent>(), Is.EqualTo(2));
         Assert.That(_service.GetListenerCount<AnotherTestEvent>(), Is.EqualTo(1));
-        Assert.That(_service.GetListenerCount(), Is.EqualTo(3));
+
     }
 
     [Test]
@@ -68,31 +64,16 @@ public class HyperPostmanServiceTests : IDisposable
     {
         // Arrange
         var listener = new TestEventListener();
-        _service.RegisterListener<TestEvent>(listener);
+        _service.Subscribe<TestEvent>(listener);
 
         // Act
-        _service.UnregisterListener<TestEvent>(listener);
+        _service.Unsubscribe<TestEvent>(listener);
 
         // Assert
         Assert.That(_service.GetListenerCount<TestEvent>(), Is.EqualTo(0));
     }
 
-    [Test]
-    public void RegisterCallback_ShouldAddListenerAndReturnDisposable()
-    {
-        // Arrange & Act
-        var disposable = _service.RegisterListener<TestEvent>((_, __) => Task.CompletedTask);
 
-        // Assert
-        Assert.That(disposable, Is.Not.Null);
-        Assert.That(_service.GetListenerCount<TestEvent>(), Is.EqualTo(1));
-
-        // Act - Dispose should remove the listener
-        disposable.Dispose();
-
-        // Assert
-        Assert.That(_service.GetListenerCount<TestEvent>(), Is.EqualTo(0));
-    }
 
     [Test]
     public async Task DispatchAsync_WithNoListeners_ShouldReturnImmediately()
@@ -117,8 +98,8 @@ public class HyperPostmanServiceTests : IDisposable
         var listener1 = new TestEventListener();
         var listener2 = new TestEventListener();
 
-        _service.RegisterListener<TestEvent>(listener1);
-        _service.RegisterListener<TestEvent>(listener2);
+        _service.Subscribe<TestEvent>(listener1);
+        _service.Subscribe<TestEvent>(listener2);
 
         // Act
         await _service.PublishAsync(testEvent);
@@ -139,8 +120,8 @@ public class HyperPostmanServiceTests : IDisposable
         var workingListener = new TestEventListener();
         var failingListener = new FailingEventListener();
 
-        _service.RegisterListener<TestEvent>(workingListener);
-        _service.RegisterListener<TestEvent>(failingListener);
+        _service.Subscribe<TestEvent>(workingListener);
+        _service.Subscribe<TestEvent>(failingListener);
 
         // Act - This should not throw since ContinueOnError is true
         await _service.PublishAsync(testEvent);

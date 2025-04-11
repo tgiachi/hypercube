@@ -97,7 +97,7 @@ public class HyperPostmanIntegrationTests
 
         // Assert - Both the listener and callback should receive the event
         Assert.That(_testListener.HandledEvents, Has.Count.EqualTo(1));
-        
+
 
         // Send another event
         var secondEvent = new TestEvent();

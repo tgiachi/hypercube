@@ -43,7 +43,13 @@ public class BaseServerOptions
     /// <remarks>
     /// Controls the verbosity of the logs. The default is Information level.
     /// </remarks>
-    [Option('l', "log-level", Required = false, Default = LogLevelType.Information, HelpText = "Set the logging level for the server.")]
+    [Option(
+        'l',
+        "log-level",
+        Required = false,
+        Default = LogLevelType.Information,
+        HelpText = "Set the logging level for the server."
+    )]
     public LogLevelType LogLevel { get; set; }
 
     /// <summary>
@@ -55,4 +61,10 @@ public class BaseServerOptions
     /// </remarks>
     [Option('r', "root-directory", Required = false, Default = "", HelpText = "Set the root directory for the service.")]
     public string RootDirectory { get; set; } = string.Empty;
+
+    /// <summary>
+    ///  Show header in the console.
+    /// </summary>
+    [Option('s', "show-header", Required = false, Default = true, HelpText = "Show header in the console.")]
+    public bool ShowHeader { get; set; } = true;
 }

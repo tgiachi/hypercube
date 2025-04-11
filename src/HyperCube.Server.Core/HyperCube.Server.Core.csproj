@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -14,7 +14,7 @@
 
         <!-- Package info -->
         <PackageId>HyperCube.Server.Core</PackageId>
-        <Version>0.0.1</Version>
+        <Version>0.0.2</Version>
         <Authors>squid</Authors>
         <Description>Core server components for the HyperCube framework. Provides service management, DI, configuration, console, logging, and hosting capabilities.</Description>
         <Copyright>Copyright © 2025</Copyright>
@@ -33,17 +33,17 @@
         <PackageReference Include="CommandLineParser" Version="2.9.1" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
         <PackageReference Include="Serilog" Version="4.2.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="../../README.md" Pack="true" PackagePath="/"/>
-        <None Include="../../images/nuget_logo.png" Pack="true" PackagePath="/"/>
+        <None Include="../../README.md" Pack="true" PackagePath="/" />
+        <None Include="../../images/nuget_logo.png" Pack="true" PackagePath="/" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\HyperCube.Core\HyperCube.Core.csproj"/>
+        <ProjectReference Include="..\HyperCube.Core\HyperCube.Core.csproj" />
     </ItemGroup>
 
 </Project>

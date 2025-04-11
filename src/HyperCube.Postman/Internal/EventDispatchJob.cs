@@ -1,7 +1,6 @@
 using HyperCube.Postman.Interfaces.Events;
 using HyperCube.Postman.Interfaces.Services;
-using Serilog;
-using ILogger = Serilog.ILogger;
+
 
 namespace HyperCube.Postman.Internal;
 
@@ -18,7 +17,7 @@ internal class EventDispatchJob<TEvent> : EventDispatchJob
 {
     private readonly ILetterListener<TEvent> _listener;
     private readonly TEvent _event;
-    private static readonly ILogger Logger = Log.ForContext<EventDispatchJob<TEvent>>();
+
 
     public EventDispatchJob(ILetterListener<TEvent> listener, TEvent @event)
     {
@@ -28,18 +27,6 @@ internal class EventDispatchJob<TEvent> : EventDispatchJob
 
     public override async Task ExecuteAsync()
     {
-        try
-        {
-            await _listener.HandleAsync(_event);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(
-                ex,
-                "Error dispatching event {EventType} to listener {ListenerType}",
-                typeof(TEvent).Name,
-                _listener.GetType().Name
-            );
-        }
+        await _listener.HandleAsync(_event);
     }
 }

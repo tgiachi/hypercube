@@ -44,6 +44,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\HyperCube.Core\HyperCube.Core.csproj" />
+        <ProjectReference Include="..\HyperCube.Postman\HyperCube.Postman.csproj" />
     </ItemGroup>
 
 </Project>

@@ -14,7 +14,7 @@
 
         <!-- Package info -->
         <PackageId>HyperCube.Server.Core</PackageId>
-        <Version>0.0.4</Version>
+        <Version>0.0.5</Version>
         <Authors>squid</Authors>
         <Description>Core server components for the HyperCube framework. Provides service management, DI, configuration, console, logging, and hosting capabilities.</Description>
         <Copyright>Copyright © 2025</Copyright>
@@ -44,6 +44,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\HyperCube.Core\HyperCube.Core.csproj" />
+        <ProjectReference Include="..\HyperCube.Postman\HyperCube.Postman.csproj" />
     </ItemGroup>
 
 </Project>

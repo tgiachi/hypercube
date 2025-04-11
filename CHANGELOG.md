@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="0.0.5"></a>
+## [0.0.5](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.5) (2025-04-11)
+
+### Features
+
+* **AddHyperCubeServiceExtension.cs:** add extension method to register HyperCube services with specified lifetime type ([aa3739a](https://www.github.com/tgiachi/hypercube/commit/aa3739a767c755a069876af55f05b975bab2cc34))
+* **events:** add BasePostmanRecordEvent, ServerStartedEvent, and ServerStoppingEvent classes to handle postman events in the server core module ([1cba42e](https://www.github.com/tgiachi/hypercube/commit/1cba42e4e7eab062e12baefb069e974d8e59d35f))
+* **ResourceUtils.cs:** add method to handle reading embedded resources with special characters in resource names ([01419cf](https://www.github.com/tgiachi/hypercube/commit/01419cf7dc5345368d62a20fc9d4c4bc49dee337))
+
 <a name="0.0.4"></a>
 ## [0.0.4](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.4) (2025-04-11)
 

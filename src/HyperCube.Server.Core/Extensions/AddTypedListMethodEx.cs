@@ -5,7 +5,7 @@ namespace HyperCube.Server.Core.Extensions;
 /// <summary>
 /// Extension methods for registering typed lists in the dependency injection container.
 /// </summary>
-public static class RegisterTypedListMethodEx
+public static class AddTypedListMethodEx
 {
     /// <summary>
     /// Adds an entity to a typed list in the dependency injection container.

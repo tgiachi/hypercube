@@ -35,15 +35,3 @@ updates:
       - "github-actions"
     commit-message:
       prefix: "ci"
-
-  # Configuration for Docker (if using Dockerfile)
-  - package-ecosystem: "docker"
-    directory: "/"  # Directory where Dockerfile is located
-    schedule:
-      interval: "monthly"
-    open-pull-requests-limit: 5
-    labels:
-      - "dependencies"
-      - "docker"
-    commit-message:
-      prefix: "docker"

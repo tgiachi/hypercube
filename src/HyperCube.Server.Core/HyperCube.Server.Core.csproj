@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IsPackable>true</IsPackable>
+
+        <!-- Package info -->
+        <PackageId>HyperCube.Server.Core</PackageId>
+        <Version>0.0.1</Version>
+        <Authors>squid</Authors>
+        <Description>Core server components for the HyperCube framework. Provides service management, DI, configuration, console, logging, and hosting capabilities.</Description>
+        <Copyright>Copyright © 2025</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/tgiachi/hypercube</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/tgiachi/hypercube</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>framework;server;di;hosting;console;logging;hypercube</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>nuget_logo.png</PackageIcon>
+
+      
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CommandLineParser" Version="2.9.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
+        <PackageReference Include="Serilog" Version="4.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../../README.md" Pack="true" PackagePath="/"/>
+        <None Include="../../images/nuget_logo.png" Pack="true" PackagePath="/"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\HyperCube.Core\HyperCube.Core.csproj"/>
+    </ItemGroup>
+
+</Project>

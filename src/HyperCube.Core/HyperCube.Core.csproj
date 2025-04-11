@@ -14,7 +14,7 @@
 
         <!-- Package info -->
         <PackageId>HyperCube.Core</PackageId>
-        <Version>0.0.4</Version>
+        <Version>0.0.5</Version>
         <Authors>squid</Authors>
         <Description>Modular .NET framework for rapid development of console, server, and web backend applications. AOT-optimized with comprehensive utilities and intuitive APIs. Fully documented and performance-oriented.</Description>
         <Copyright>Copyright © 2025</Copyright>

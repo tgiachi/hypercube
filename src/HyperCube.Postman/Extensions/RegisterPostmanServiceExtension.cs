@@ -12,10 +12,21 @@ public static class RegisterPostmanServiceExtension
     /// </summary>
     /// <param name="services">The service collection to register the Postman service with.</param>
     /// <returns>The updated service collection.</returns>
-    public static IServiceCollection RegisterPostmanService(this IServiceCollection services, HyperPostmanConfig config)
+    public static IServiceCollection AddPostman(this IServiceCollection services, HyperPostmanConfig config)
     {
         services.AddSingleton<IHyperPostmanService, HyperPostmanService>();
 
+        services.AddSingleton(config);
+
+        return services;
+    }
+
+    public static IServiceCollection AddPostman(this IServiceCollection services, Action<HyperPostmanConfig> action)
+    {
+        var config = new HyperPostmanConfig();
+        action(config);
+
+        services.AddSingleton<IHyperPostmanService, HyperPostmanService>();
         services.AddSingleton(config);
 
         return services;

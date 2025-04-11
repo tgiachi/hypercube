@@ -254,7 +254,7 @@ public class HyperPostmanService : IHyperPostmanService, IDisposable
                 // Create a dispatcher method for the specific event type using reflection
                 var dispatchMethod = typeof(HyperPostmanService)
                     .GetMethod(
-                        "DispatchToListener",
+                        nameof(DispatchToListener),
                         BindingFlags.NonPublic | BindingFlags.Instance
                     )
                     ?.MakeGenericMethod(eventType);
@@ -303,7 +303,7 @@ public class HyperPostmanService : IHyperPostmanService, IDisposable
                         // Ensure we dispose the token source
                         try
                         {
-                            cancellationSource.Cancel();
+                            await cancellationSource.CancelAsync();
                         }
                         catch
                         {

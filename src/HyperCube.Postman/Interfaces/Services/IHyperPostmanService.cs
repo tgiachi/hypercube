@@ -12,15 +12,39 @@ public interface IHyperPostmanService
     /// </summary>
     IObservable<object> AllEventsObservable { get; }
 
+
+    /// <summary>
+    ///  Registers a listener for a specific event type.
+    /// </summary>
+    /// <param name="listener"></param>
+    /// <typeparam name="TEvent"></typeparam>
     void Subscribe<TEvent>(ILetterListener<TEvent> listener)
         where TEvent : class, IHyperPostmanEvent;
 
+
+    /// <summary>
+    ///  Registers a listener for a specific event type.
+    /// </summary>
+    /// <param name="handler"></param>
+    /// <typeparam name="TEvent"></typeparam>
     void Subscribe<TEvent>(Func<TEvent, Task> handler)
         where TEvent : class, IHyperPostmanEvent;
 
+    /// <summary>
+    ///  Unregisters a listener for a specific event type.
+    /// </summary>
+    /// <param name="listener"></param>
+    /// <typeparam name="TEvent"></typeparam>
     void Unsubscribe<TEvent>(ILetterListener<TEvent> listener)
         where TEvent : class, IHyperPostmanEvent;
 
+    /// <summary>
+    ///  Dispatches an event to all registered listeners asynchronously.
+    /// </summary>
+    /// <param name="eventData"></param>
+    /// <param name="cancellationToken"></param>
+    /// <typeparam name="TEvent"></typeparam>
+    /// <returns></returns>
     Task PublishAsync<TEvent>(TEvent eventData, CancellationToken cancellationToken = default)
         where TEvent : class, IHyperPostmanEvent;
 

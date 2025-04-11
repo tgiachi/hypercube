@@ -20,5 +20,7 @@ public class SubscriptionDisposable : IDisposable
             _unsubscribeAction();
             _disposed = true;
         }
+
+        GC.SuppressFinalize(this);
     }
 }

@@ -33,13 +33,15 @@ jobs:
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
-      - name: Pack Network project
+      - name: Pack all NuGet projects
         run: |
-          dotnet pack src/HyperCube.Core/HyperCube.Core.csproj \
-          --configuration Release \
-          --no-build \
-          --include-symbols \
-          --output ./nupkgs
+          for project in $(find ./src -name "*.csproj"); do
+            dotnet pack $project \
+            --configuration Release \
+            --no-build \
+            --include-symbols \
+            --output ./nupkgs
+          done
 
       - name: Push packages to NuGet
         run: |
@@ -47,7 +49,6 @@ jobs:
           --api-key ${{ secrets.NUGET_KEY }} \
           --source https://api.nuget.org/v3/index.json \
           --skip-duplicate
-
 
       - name: Setup NuGet for GitHub Packages
         run: |

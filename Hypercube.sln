@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperCube.Core", "src\Hyper
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperCube.Tests", "tests\HyperCube.Tests\HyperCube.Tests.csproj", "{7A668593-A5EB-4EC5-A183-6DD3EE21EFB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperCube.Server.Core", "src\HyperCube.Server.Core\HyperCube.Server.Core.csproj", "{9D835941-BD4F-465F-A6D3-C9F18E8EE5E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperCube.Postman", "src\HyperCube.Postman\HyperCube.Postman.csproj", "{A4EC3169-C9A4-4D48-992E-EC804B158E93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{7A668593-A5EB-4EC5-A183-6DD3EE21EFB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A668593-A5EB-4EC5-A183-6DD3EE21EFB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A668593-A5EB-4EC5-A183-6DD3EE21EFB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D835941-BD4F-465F-A6D3-C9F18E8EE5E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D835941-BD4F-465F-A6D3-C9F18E8EE5E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D835941-BD4F-465F-A6D3-C9F18E8EE5E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D835941-BD4F-465F-A6D3-C9F18E8EE5E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4EC3169-C9A4-4D48-992E-EC804B158E93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4EC3169-C9A4-4D48-992E-EC804B158E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4EC3169-C9A4-4D48-992E-EC804B158E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4EC3169-C9A4-4D48-992E-EC804B158E93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

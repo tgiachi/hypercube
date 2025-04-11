@@ -13,41 +13,37 @@
         <IsPackable>true</IsPackable>
 
         <!-- Package info -->
-        <PackageId>HyperCube.Core</PackageId>
+        <PackageId>HyperCube.Server.Core</PackageId>
         <Version>0.0.2</Version>
         <Authors>squid</Authors>
-        <Description>Modular .NET framework for rapid development of console, server, and web backend applications. AOT-optimized with comprehensive utilities and intuitive APIs. Fully documented and performance-oriented.</Description>
+        <Description>Core server components for the HyperCube framework. Provides service management, DI, configuration, console, logging, and hosting capabilities.</Description>
         <Copyright>Copyright © 2025</Copyright>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/tgiachi/hypercube</PackageProjectUrl>
         <RepositoryUrl>https://github.com/tgiachi/hypercube</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageTags>framework;utilities;aot;dotnet;hypercube</PackageTags>
+        <PackageTags>framework;server;di;hosting;console;logging;hypercube</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>nuget_logo.png</PackageIcon>
 
-        <!-- AOT related settings -->
-        <IsAotCompatible>true</IsAotCompatible>
-        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
-        <EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
-        <EnableAotAnalyzer>true</EnableAotAnalyzer>
-
-        <!-- Warning suppression -->
-        <!-- Everything is controlled by the analyzers -->
-        <NoWarn>$(NoWarn);IL3050;IL2026</NoWarn>
+      
     </PropertyGroup>
 
- 
-
     <ItemGroup>
-        <PackageReference Include="Vecc.YamlDotNet.Analyzers.StaticGenerator" PrivateAssets="all" Version="16.3.0" />
-        <PackageReference Include="YamlDotNet" Version="16.3.0" />
+        <PackageReference Include="CommandLineParser" Version="2.9.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+        <PackageReference Include="Serilog" Version="4.2.0" />
     </ItemGroup>
 
     <ItemGroup>
         <None Include="../../README.md" Pack="true" PackagePath="/" />
         <None Include="../../images/nuget_logo.png" Pack="true" PackagePath="/" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\HyperCube.Core\HyperCube.Core.csproj" />
     </ItemGroup>
 
 </Project>

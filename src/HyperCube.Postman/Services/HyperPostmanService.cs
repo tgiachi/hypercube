@@ -86,10 +86,7 @@ public class HyperPostmanService : IHyperPostmanService, IDisposable
     /// <inheritdoc />
     public void RegisterListener<TEvent>(ILetterListener<TEvent> listener) where TEvent : IHyperPostmanEvent
     {
-        if (listener == null)
-        {
-            throw new ArgumentNullException(nameof(listener));
-        }
+        ArgumentNullException.ThrowIfNull(listener);
 
         var eventType = typeof(TEvent);
         var listeners = _listeners.GetOrAdd(eventType, _ => new List<object>());
@@ -109,13 +106,10 @@ public class HyperPostmanService : IHyperPostmanService, IDisposable
     }
 
     /// <inheritdoc />
-    public IDisposable RegisterCallback<TEvent>(Func<TEvent, CancellationToken, Task> callback)
+    public IDisposable RegisterListener<TEvent>(Func<TEvent, CancellationToken, Task> callback)
         where TEvent : IHyperPostmanEvent
     {
-        if (callback == null)
-        {
-            throw new ArgumentNullException(nameof(callback));
-        }
+        ArgumentNullException.ThrowIfNull(callback);
 
         var wrapper = new CallbackWrapper<TEvent>(callback);
         RegisterListener(wrapper);
@@ -126,10 +120,7 @@ public class HyperPostmanService : IHyperPostmanService, IDisposable
     /// <inheritdoc />
     public void UnregisterListener<TEvent>(ILetterListener<TEvent> listener) where TEvent : IHyperPostmanEvent
     {
-        if (listener == null)
-        {
-            throw new ArgumentNullException(nameof(listener));
-        }
+        ArgumentNullException.ThrowIfNull(listener);
 
         var eventType = typeof(TEvent);
 
@@ -163,7 +154,7 @@ public class HyperPostmanService : IHyperPostmanService, IDisposable
     }
 
     /// <inheritdoc />
-    public async Task DispatchAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
+    public async Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
         where TEvent : IHyperPostmanEvent
     {
         _allEventsSubject.OnNext(@event);

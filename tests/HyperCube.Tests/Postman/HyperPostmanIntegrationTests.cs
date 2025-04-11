@@ -62,8 +62,8 @@ public class HyperPostmanIntegrationTests
         var orderEvent = new OrderPlacedEvent { OrderId = "123", Amount = 99.99m };
 
         // Act
-        await _postmanService.DispatchAsync(testEvent);
-        await _postmanService.DispatchAsync(orderEvent);
+        await _postmanService.PublishAsync(testEvent);
+        await _postmanService.PublishAsync(orderEvent);
 
         // Allow time for async processing
         await Task.Delay(100);
@@ -87,7 +87,7 @@ public class HyperPostmanIntegrationTests
 
 
         // Act
-        await _postmanService.DispatchAsync(testEvent);
+        await _postmanService.PublishAsync(testEvent);
         await _testListener.WaitForEventAsync(TimeSpan.FromSeconds(2));
 
         // Allow time for async processing
@@ -101,7 +101,7 @@ public class HyperPostmanIntegrationTests
 
         // Send another event
         var secondEvent = new TestEvent();
-        await _postmanService.DispatchAsync(secondEvent);
+        await _postmanService.PublishAsync(secondEvent);
 
         // Allow time for async processing
         await Task.Delay(100);
@@ -128,7 +128,7 @@ public class HyperPostmanIntegrationTests
         {
             var evt = new SlowProcessingEvent { Id = Guid.NewGuid().ToString(), SequenceNumber = i };
             events.Add(evt);
-            _ = _postmanService.DispatchAsync(evt); // Don't await, dispatch all at once
+            _ = _postmanService.PublishAsync(evt); // Don't await, dispatch all at once
         }
 
         // Wait a bit to ensure all events are queued

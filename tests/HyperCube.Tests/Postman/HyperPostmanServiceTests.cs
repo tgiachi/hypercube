@@ -81,7 +81,7 @@ public class HyperPostmanServiceTests : IDisposable
     public void RegisterCallback_ShouldAddListenerAndReturnDisposable()
     {
         // Arrange & Act
-        var disposable = _service.RegisterCallback<TestEvent>((_, __) => Task.CompletedTask);
+        var disposable = _service.RegisterListener<TestEvent>((_, __) => Task.CompletedTask);
 
         // Assert
         Assert.That(disposable, Is.Not.Null);
@@ -102,7 +102,7 @@ public class HyperPostmanServiceTests : IDisposable
 
         // Act & Assert
         // This should not throw or block
-        await _service.DispatchAsync(testEvent);
+        await _service.PublishAsync(testEvent);
 
         // We can't directly assert anything since there's no return value
         // But if we got here, it means the method returned successfully
@@ -121,7 +121,7 @@ public class HyperPostmanServiceTests : IDisposable
         _service.RegisterListener<TestEvent>(listener2);
 
         // Act
-        await _service.DispatchAsync(testEvent);
+        await _service.PublishAsync(testEvent);
 
         // Allow time for async processing
         await Task.Delay(100);
@@ -143,7 +143,7 @@ public class HyperPostmanServiceTests : IDisposable
         _service.RegisterListener<TestEvent>(failingListener);
 
         // Act - This should not throw since ContinueOnError is true
-        await _service.DispatchAsync(testEvent);
+        await _service.PublishAsync(testEvent);
 
         // Allow time for async processing
         await Task.Delay(100);

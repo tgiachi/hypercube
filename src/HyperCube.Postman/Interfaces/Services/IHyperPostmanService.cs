@@ -27,7 +27,7 @@ public interface IHyperPostmanService
     /// <typeparam name="TEvent">The type of event to listen for.</typeparam>
     /// <param name="callback">The callback function to register.</param>
     /// <returns>A subscription that can be disposed to unregister the callback.</returns>
-    IDisposable RegisterCallback<TEvent>(Func<TEvent, CancellationToken, Task> callback) where TEvent : IHyperPostmanEvent;
+    IDisposable RegisterListener<TEvent>(Func<TEvent, CancellationToken, Task> callback) where TEvent : IHyperPostmanEvent;
 
     /// <summary>
     /// Dispatches an event to all registered listeners and callbacks.
@@ -36,7 +36,7 @@ public interface IHyperPostmanService
     /// <param name="event">The event to dispatch.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task DispatchAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
+    Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
         where TEvent : IHyperPostmanEvent;
 
     /// <summary>

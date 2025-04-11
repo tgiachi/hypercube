@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -14,7 +14,7 @@
 
         <!-- Package info -->
         <PackageId>HyperCube.Postman</PackageId>
-        <Version>0.0.2</Version>
+        <Version>0.0.4</Version>
         <Authors>squid</Authors>
         <Description>Event dispatching system for the HyperCube framework. Provides multi-task event distribution with strongly-typed listeners.</Description>
         <Copyright>Copyright © 2025</Copyright>
@@ -29,15 +29,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4"/>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
-        <PackageReference Include="System.Reactive" Version="6.0.1"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+        <PackageReference Include="System.Reactive" Version="6.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="../../README.md" Pack="true" PackagePath="/"/>
-        <None Include="../../images/nuget_logo.png" Pack="true" PackagePath="/"/>
+        <None Include="../../README.md" Pack="true" PackagePath="/" />
+        <None Include="../../images/nuget_logo.png" Pack="true" PackagePath="/" />
     </ItemGroup>
 
 </Project>

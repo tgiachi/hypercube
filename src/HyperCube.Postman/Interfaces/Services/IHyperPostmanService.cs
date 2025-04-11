@@ -7,44 +7,46 @@ namespace HyperCube.Postman.Interfaces.Services;
 /// </summary>
 public interface IHyperPostmanService
 {
-
-
     /// <summary>
     ///  Observable that emits all events dispatched through the system.
     /// </summary>
     IObservable<object> AllEventsObservable { get; }
 
-    /// <summary>
-    /// Registers a listener for a specific event type.
-    /// </summary>
-    /// <typeparam name="TEvent">The type of event to listen for.</typeparam>
-    /// <param name="listener">The listener to register.</param>
-    void RegisterListener<TEvent>(ILetterListener<TEvent> listener) where TEvent : IHyperPostmanEvent;
 
     /// <summary>
-    /// Registers a callback function for a specific event type.
+    ///  Registers a listener for a specific event type.
     /// </summary>
-    /// <typeparam name="TEvent">The type of event to listen for.</typeparam>
-    /// <param name="callback">The callback function to register.</param>
-    /// <returns>A subscription that can be disposed to unregister the callback.</returns>
-    IDisposable RegisterCallback<TEvent>(Func<TEvent, CancellationToken, Task> callback) where TEvent : IHyperPostmanEvent;
+    /// <param name="listener"></param>
+    /// <typeparam name="TEvent"></typeparam>
+    void Subscribe<TEvent>(ILetterListener<TEvent> listener)
+        where TEvent : class, IHyperPostmanEvent;
+
 
     /// <summary>
-    /// Dispatches an event to all registered listeners and callbacks.
+    ///  Registers a listener for a specific event type.
     /// </summary>
-    /// <typeparam name="TEvent">The type of event to dispatch.</typeparam>
-    /// <param name="event">The event to dispatch.</param>
-    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    Task DispatchAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
-        where TEvent : IHyperPostmanEvent;
+    /// <param name="handler"></param>
+    /// <typeparam name="TEvent"></typeparam>
+    void Subscribe<TEvent>(Func<TEvent, Task> handler)
+        where TEvent : class, IHyperPostmanEvent;
 
     /// <summary>
-    /// Unregisters a listener for a specific event type.
+    ///  Unregisters a listener for a specific event type.
     /// </summary>
-    /// <typeparam name="TEvent">The type of event.</typeparam>
-    /// <param name="listener">The listener to unregister.</param>
-    void UnregisterListener<TEvent>(ILetterListener<TEvent> listener) where TEvent : IHyperPostmanEvent;
+    /// <param name="listener"></param>
+    /// <typeparam name="TEvent"></typeparam>
+    void Unsubscribe<TEvent>(ILetterListener<TEvent> listener)
+        where TEvent : class, IHyperPostmanEvent;
+
+    /// <summary>
+    ///  Dispatches an event to all registered listeners asynchronously.
+    /// </summary>
+    /// <param name="eventData"></param>
+    /// <param name="cancellationToken"></param>
+    /// <typeparam name="TEvent"></typeparam>
+    /// <returns></returns>
+    Task PublishAsync<TEvent>(TEvent eventData, CancellationToken cancellationToken = default)
+        where TEvent : class, IHyperPostmanEvent;
 
     /// <summary>
     /// Gets the current number of registered listeners for all event types.
@@ -58,4 +60,11 @@ public interface IHyperPostmanService
     /// <typeparam name="TEvent">The type of event.</typeparam>
     /// <returns>The number of registered listeners for the specified event type.</returns>
     int GetListenerCount<TEvent>() where TEvent : IHyperPostmanEvent;
+
+
+    /// <summary>
+    ///  Waits for all dispatched events to be processed.
+    /// </summary>
+    /// <returns></returns>
+    public Task WaitForCompletionAsync();
 }

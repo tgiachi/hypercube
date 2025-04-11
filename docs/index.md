@@ -1,8 +1,8 @@
-# HyperCube Framework
+# AbyssIrc Documentation
 
-![](images/hypercube_cover.png)
+Welcome to the Hypercube  documentation.
 
-## Overview
+## Getting Started
 
 HyperCube is a high-performance, modular framework designed to accelerate development of:
 
@@ -17,10 +17,10 @@ creating robust applications quickly and efficiently.
 
 - **Modular Architecture**: Build your application using composable modules that can be easily reused across projects
 - **Comprehensive Utilities**: Ready-to-use utility classes for common operations:
-    - String manipulation (case conversions, environment variable handling)
-    - Cryptography (hashing, encryption, password management)
-    - JSON & YAML serialization with AOT support
-    - IP address handling
+  - String manipulation (case conversions, environment variable handling)
+  - Cryptography (hashing, encryption, password management)
+  - JSON & YAML serialization with AOT support
+  - IP address handling
 - **Performance Optimized**: Built with AOT (Ahead-of-Time) compilation support
 - **Well Documented**: Thorough XML documentation for all components
 - **Developer Friendly**: Intuitive API design with consistent patterns
@@ -89,6 +89,10 @@ var obj = json.FromJson<MyClass>(MyJsonContext.Default);
 ```
 
 
-## License
+### Configuration
 
-HyperCube is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Configuration documentation and examples are available in the [articles section](articles/configuration.md).
+
+## API Documentation
+
+Explore the [API documentation](api/index.html) for detailed information about the server components.

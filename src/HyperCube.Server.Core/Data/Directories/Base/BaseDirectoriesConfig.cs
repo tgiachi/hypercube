@@ -78,7 +78,7 @@ public class BaseDirectoriesConfig<TDirectoryEnum> where TDirectoryEnum : struct
         // Root is a special case, just return the root directory
         if (EqualityComparer<TDirectoryEnum>.Default.Equals(
                 directoryType,
-                (TDirectoryEnum)Enum.Parse(typeof(TDirectoryEnum), "Root", true)
+                Enum.Parse<TDirectoryEnum>("Root", true)
             ))
         {
             return Root;

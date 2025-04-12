@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="0.0.6"></a>
+## [0.0.6](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.6) (2025-04-12)
+
+### Features
+
+* **HyperCubeHostBuilder.cs:** add new class HyperCubeHostBuilder for creating and configuring HyperCube host applications ([ac52644](https://www.github.com/tgiachi/hypercube/commit/ac526447fe584c158dcf652ce4e2494defbd282e))
+* **HyperCubeHostBuilder.cs:** add support for HyperPostmanConfig to customize postman settings ([7350b0f](https://www.github.com/tgiachi/hypercube/commit/7350b0f1e1750ca6a37c42f8702e63b2a094cbb1))
+
 <a name="0.0.5"></a>
 ## [0.0.5](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.5) (2025-04-11)
 

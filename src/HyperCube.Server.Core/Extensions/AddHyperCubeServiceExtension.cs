@@ -38,4 +38,14 @@ public static class AddHyperCubeServiceExtension
 
         return services;
     }
+
+    public static IServiceCollection AddService<TService, TImplementation>(
+        this IServiceCollection services,
+        ServiceLifetimeType lifetimeType = ServiceLifetimeType.Singleton
+    )
+        where TService : class
+        where TImplementation : class, TService
+    {
+        return services.AddService(typeof(TService), typeof(TImplementation), lifetimeType);
+    }
 }

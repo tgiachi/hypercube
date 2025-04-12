@@ -1,10 +1,11 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
+using HyperCube.Postman.Config;
+using HyperCube.Postman.Extensions;
 using HyperCube.Server.Core.Data.Directories.Base;
+using HyperCube.Server.Core.Data.Internal;
 using HyperCube.Server.Core.Data.Options.Base;
 using HyperCube.Server.Core.Extensions;
 using HyperCube.Server.Core.Interfaces.Modules;
+using HyperCube.Server.Core.Services;
 using HyperCube.Server.Core.Types;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,10 +24,12 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
     private readonly HostApplicationBuilder _hostApplicationBuilder;
     private IHost _host;
 
+    private bool _isBuilt;
     private readonly string _applicationName;
     private readonly string _environmentName;
     private readonly TOptions _options;
     private BaseDirectoriesConfig<TDirEnum> _directoriesConfig;
+    private HyperPostmanConfig _hyperPostmanConfig = new();
 
     /// <summary>
     /// Creates a new instance of the HyperCubeHostBuilder.
@@ -73,13 +76,15 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
 
         // Create the host application builder with the specified settings
         _hostApplicationBuilder = Host.CreateApplicationBuilder(
-            new HostApplicationBuilderSettings()
+            new HostApplicationBuilderSettings
             {
                 Args = Environment.GetCommandLineArgs(),
                 ApplicationName = applicationName,
                 EnvironmentName = environmentName
             }
         );
+
+        _hostApplicationBuilder.Services.AddSingleton(new AppDefinitionObject(_applicationName, _environmentName));
 
         // Parse command line arguments into options
         _options = Environment
@@ -89,8 +94,15 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
         // Register options with DI
         _hostApplicationBuilder.Services.AddSingleton(_options);
 
+
         // Initialize directories
         InitializeDirectories();
+    }
+
+    public HyperCubeHostBuilder<TOptions, TDirEnum> AddHyperPostmanConfig(HyperPostmanConfig hyperPostmanConfig)
+    {
+        _hyperPostmanConfig = hyperPostmanConfig;
+        return this;
     }
 
     /// <summary>
@@ -158,7 +170,7 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
     /// <returns>The current builder instance for chaining.</returns>
     public HyperCubeHostBuilder<TOptions, TDirEnum> ConfigureServices(Action<IServiceCollection> configureServices)
     {
-        configureServices?.Invoke(_hostApplicationBuilder.Services);
+        configureServices.Invoke(_hostApplicationBuilder.Services);
         return this;
     }
 
@@ -168,6 +180,16 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
     /// <returns>The current builder instance for chaining.</returns>
     public HyperCubeHostBuilder<TOptions, TDirEnum> Build()
     {
+        if (_isBuilt)
+        {
+            throw new InvalidOperationException("Host has already been built. Call Build() only once.");
+        }
+
+        _isBuilt = true;
+
+        _hostApplicationBuilder.Services.AddHostedService<HyperCubeServiceManager>();
+        _hostApplicationBuilder.Services.AddPostman(_hyperPostmanConfig);
+
         // Configure logging
         _hostApplicationBuilder.BuildLogger(_directoriesConfig, _options);
 

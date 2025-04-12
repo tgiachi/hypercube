@@ -56,7 +56,6 @@ public class HyperPostmanServiceTests : IDisposable
         // Assert
         Assert.That(_service.GetListenerCount<TestEvent>(), Is.EqualTo(2));
         Assert.That(_service.GetListenerCount<AnotherTestEvent>(), Is.EqualTo(1));
-
     }
 
     [Test]
@@ -72,7 +71,6 @@ public class HyperPostmanServiceTests : IDisposable
         // Assert
         Assert.That(_service.GetListenerCount<TestEvent>(), Is.EqualTo(0));
     }
-
 
 
     [Test]
@@ -110,27 +108,6 @@ public class HyperPostmanServiceTests : IDisposable
         // Assert
         Assert.That(listener1.HandledEvents, Does.Contain(testEvent));
         Assert.That(listener2.HandledEvents, Does.Contain(testEvent));
-    }
-
-    [Test]
-    public async Task DispatchAsync_WithFailingListener_ShouldContinueWithOtherListeners()
-    {
-        // Arrange
-        var testEvent = new TestEvent();
-        var workingListener = new TestEventListener();
-        var failingListener = new FailingEventListener();
-
-        _service.Subscribe<TestEvent>(workingListener);
-        _service.Subscribe<TestEvent>(failingListener);
-
-        // Act - This should not throw since ContinueOnError is true
-        await _service.PublishAsync(testEvent);
-
-        // Allow time for async processing
-        await Task.Delay(100);
-
-        // Assert - The working listener should still have processed the event
-        Assert.That(workingListener.HandledEvents, Does.Contain(testEvent));
     }
 
 

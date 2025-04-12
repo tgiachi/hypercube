@@ -67,4 +67,11 @@ public class BaseServerOptions
     /// </summary>
     [Option('s', "show-header", Required = false, Default = true, HelpText = "Show header in the console.")]
     public bool ShowHeader { get; set; } = true;
+
+
+    /// <summary>
+    ///  /// Gets or sets the logs directory for the service.
+    /// </summary>
+    [Option('d', "logs-directory", Required = false, Default = "logs", HelpText = "Set the logs directory for the service.")]
+    public string LogsDirectory { get; set; }
 }

@@ -60,8 +60,13 @@ public static class LoadConfigExtension
         // Read the configuration content from the file
         var configContent = File.ReadAllText(fullConfigFilePath);
 
+        configContent = configContent.ReplaceEnvVariable();
+
         // Deserialize the YAML content to the configuration type
         var configInstance = configContent.FromYaml<TConfig>();
+
+
+
 
         // Register the configuration instance in the DI container
         services.AddSingleton(configInstance);

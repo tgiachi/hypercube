@@ -21,14 +21,12 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
     where TOptions : BaseServerOptions
     where TDirEnum : struct, Enum
 {
-    private readonly HostApplicationBuilder _hostApplicationBuilder;
     private IHost _host;
 
     private bool _isBuilt;
     private readonly string _applicationName;
     private readonly string _environmentName;
     private readonly TOptions _options;
-    private BaseDirectoriesConfig<TDirEnum> _directoriesConfig;
     private HyperPostmanConfig _hyperPostmanConfig = new();
 
     /// <summary>
@@ -47,7 +45,7 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
     /// <summary>
     /// Gets the underlying HostApplicationBuilder for advanced configuration.
     /// </summary>
-    public HostApplicationBuilder HostBuilder => _hostApplicationBuilder;
+    public HostApplicationBuilder HostBuilder { get; }
 
     /// <summary>
     /// Gets the server options.
@@ -57,7 +55,7 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
     /// <summary>
     /// Gets the directory configuration.
     /// </summary>
-    public BaseDirectoriesConfig<TDirEnum> DirectoriesConfig => _directoriesConfig;
+    public BaseDirectoriesConfig<TDirEnum> DirectoriesConfig { get; private set; }
 
     /// <summary>
     /// Gets the built IHost instance. Only available after Build() has been called.
@@ -75,7 +73,7 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
         _environmentName = environmentName ?? throw new ArgumentNullException(nameof(environmentName));
 
         // Create the host application builder with the specified settings
-        _hostApplicationBuilder = Host.CreateApplicationBuilder(
+        HostBuilder = Host.CreateApplicationBuilder(
             new HostApplicationBuilderSettings
             {
                 Args = Environment.GetCommandLineArgs(),
@@ -84,7 +82,7 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
             }
         );
 
-        _hostApplicationBuilder.Services.AddSingleton(new AppDefinitionObject(_applicationName, _environmentName));
+        HostBuilder.Services.AddSingleton(new AppDefinitionObject(_applicationName, _environmentName));
 
         // Parse command line arguments into options
         _options = Environment
@@ -92,7 +90,7 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
             .ParseOptionCommandLine<TOptions>();
 
         // Register options with DI
-        _hostApplicationBuilder.Services.AddSingleton(_options);
+        HostBuilder.Services.AddSingleton(_options);
 
 
         // Initialize directories
@@ -110,8 +108,8 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
     /// </summary>
     private void InitializeDirectories()
     {
-        _directoriesConfig = _options.CreateDirectoryConfig<TDirEnum, TOptions>();
-        _hostApplicationBuilder.Services.AddSingleton(_directoriesConfig);
+        DirectoriesConfig = _options.CreateDirectoryConfig<TDirEnum, TOptions>();
+        HostBuilder.Services.AddSingleton(DirectoriesConfig);
     }
 
     /// <summary>
@@ -122,7 +120,7 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
     public HyperCubeHostBuilder<TOptions, TDirEnum> AddModule<TModule>()
         where TModule : class, IHyperCubeContainerModule
     {
-        _hostApplicationBuilder.Services.AddModule<TModule>();
+        HostBuilder.Services.AddModule<TModule>();
         return this;
     }
 
@@ -142,7 +140,7 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
             );
         }
 
-        _hostApplicationBuilder.Services.AddModule(moduleType);
+        HostBuilder.Services.AddModule(moduleType);
         return this;
     }
 
@@ -159,7 +157,7 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
         where TService : class
         where TImplementation : class, TService
     {
-        _hostApplicationBuilder.Services.AddService<TService, TImplementation>(lifetimeType);
+        HostBuilder.Services.AddService<TService, TImplementation>(lifetimeType);
         return this;
     }
 
@@ -170,7 +168,7 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
     /// <returns>The current builder instance for chaining.</returns>
     public HyperCubeHostBuilder<TOptions, TDirEnum> ConfigureServices(Action<IServiceCollection> configureServices)
     {
-        configureServices.Invoke(_hostApplicationBuilder.Services);
+        configureServices.Invoke(HostBuilder.Services);
         return this;
     }
 
@@ -187,17 +185,17 @@ public class HyperCubeHostBuilder<TOptions, TDirEnum>
 
         _isBuilt = true;
 
-        _hostApplicationBuilder.Services.AddHostedService<HyperCubeServiceManager>();
-        _hostApplicationBuilder.Services.AddPostman(_hyperPostmanConfig);
+        HostBuilder.Services.AddHostedService<HyperCubeServiceManager>();
+        HostBuilder.Services.AddPostman(_hyperPostmanConfig);
 
         // Configure logging
-        _hostApplicationBuilder.BuildLogger(_directoriesConfig, _options);
+        HostBuilder.BuildLogger(DirectoriesConfig, _options);
 
         // Display header if enabled
         _options.ShowHeader();
 
         // Build the host
-        _host = _hostApplicationBuilder.Build();
+        _host = HostBuilder.Build();
 
         return this;
     }

@@ -6,5 +6,4 @@ namespace HyperCube.Postman.Interfaces.Events;
 public interface IHyperPostmanEvent
 {
 
-    string Id { get; }
 }

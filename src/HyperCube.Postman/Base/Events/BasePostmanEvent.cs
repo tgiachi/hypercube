@@ -7,5 +7,4 @@ namespace HyperCube.Postman.Base.Events;
 /// </summary>
 public abstract class BasePostmanEvent : IHyperPostmanEvent
 {
-    public string Id { get; } = Guid.NewGuid().ToString().Replace("-", "");
 }

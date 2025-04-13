@@ -69,7 +69,7 @@ public class HyperPostmanIntegrationTests
 
         // Assert
         Assert.That(_testListener.HandledEvents, Has.Count.EqualTo(1));
-        Assert.That(_testListener.HandledEvents[0].Id, Is.EqualTo(testEvent.Id));
+
 
         Assert.That(_orderListener.HandledEvents, Has.Count.EqualTo(1));
         Assert.That(_orderListener.HandledEvents[0].OrderId, Is.EqualTo("123"));

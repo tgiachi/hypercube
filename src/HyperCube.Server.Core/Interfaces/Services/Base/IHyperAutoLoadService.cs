@@ -1,4 +1,4 @@
-namespace HyperCube.Server.Core.Interfaces.Services;
+namespace HyperCube.Server.Core.Interfaces.Services.Base;
 
 /// <summary>
 /// Marker interface for services that should be automatically loaded and registered at application startup.

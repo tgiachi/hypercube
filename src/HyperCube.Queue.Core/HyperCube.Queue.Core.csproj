@@ -14,7 +14,7 @@
 
         <!-- Package info -->
         <PackageId>HyperCube.Queue.Core</PackageId>
-        <Version>0.0.8</Version>
+        <Version>0.0.9</Version>
         <Authors>squid</Authors>
         <Description>Messaging queue abstraction for the HyperCube framework with built-in internal queue provider.</Description>
         <Copyright>Copyright © 2025</Copyright>

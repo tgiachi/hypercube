@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="0.0.9"></a>
+## [0.0.9](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.9) (2025-04-13)
+
+### Features
+
+* **EventDispatcherService:** add EventDispatcherService class to handle event subscription and dispatching ([f89818a](https://www.github.com/tgiachi/hypercube/commit/f89818a4f05d013bd7ce302bfbd0b1de5b35933a))
+* **HyperCube.ScriptEngine.Core.csproj:** update package version to 0.0.8 ([be0875c](https://www.github.com/tgiachi/hypercube/commit/be0875c434751ab51c335dd167b857bfae463723))
+* **HyperCube.Server.Core:** add new classes and interfaces for managing server core functionalities ([b518941](https://www.github.com/tgiachi/hypercube/commit/b5189414b1c157fb6233a55cc10b04dbec94c8c8))
+* **RegisterScriptModuleExtension.cs:** add RegisterScriptModuleExtension class to provide methods for registering script modules in the service collection ([3a7c273](https://www.github.com/tgiachi/hypercube/commit/3a7c2734e456b46589df7446495cfa45b2ee810f))
+* **sln:** add new project HyperCube.ScriptEngine.Core to the solution ([dfb7fd6](https://www.github.com/tgiachi/hypercube/commit/dfb7fd64b4f8946fbb19eeaa55a4ab2f8bb1723e))
+
 <a name="0.0.8"></a>
 ## [0.0.8](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.8) (2025-04-13)
 

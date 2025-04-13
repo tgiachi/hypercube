@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="0.0.7"></a>
+## [0.0.7](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.7) (2025-04-13)
+
+### Features
+
+* **Hypercube.sln:** add HyperCube.Entities.Core project to solution ([4c9b0cc](https://www.github.com/tgiachi/hypercube/commit/4c9b0cc3eaf193bb1cbdd87d79d70fe829555f93))
+
+### Bug Fixes
+
+* **entities:** update version number in csproj file from 0.0.1 to 0.0.6 ([c13c3ef](https://www.github.com/tgiachi/hypercube/commit/c13c3efbadcc86359937d3bca3381086afcc24d1))
+
 <a name="0.0.6"></a>
 ## [0.0.6](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.6) (2025-04-12)
 

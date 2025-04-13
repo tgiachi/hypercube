@@ -14,7 +14,7 @@
 
         <!-- Package info -->
         <PackageId>HyperCube.Postman</PackageId>
-        <Version>0.0.6</Version>
+        <Version>0.0.7</Version>
         <Authors>squid</Authors>
         <Description>Event dispatching system for the HyperCube framework. Provides multi-task event distribution with strongly-typed listeners.</Description>
         <Copyright>Copyright © 2025</Copyright>

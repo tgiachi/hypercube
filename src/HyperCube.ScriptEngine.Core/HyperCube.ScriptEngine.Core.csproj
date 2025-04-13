@@ -26,7 +26,6 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>nuget_logo.png</PackageIcon>
 
-       
 
         <!-- Warning suppression -->
         <!-- Everything is controlled by the analyzers -->
@@ -34,17 +33,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Jint" Version="4.2.2" />
+        <PackageReference Include="Jint" Version="4.2.2"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\HyperCube.Core\HyperCube.Core.csproj" />
-        <ProjectReference Include="..\HyperCube.Postman\HyperCube.Postman.csproj" />
-        <ProjectReference Include="..\HyperCube.Server.Core\HyperCube.Server.Core.csproj" />
+        <ProjectReference Include="..\HyperCube.Core\HyperCube.Core.csproj"/>
+        <ProjectReference Include="..\HyperCube.Postman\HyperCube.Postman.csproj"/>
+        <ProjectReference Include="..\HyperCube.Server.Core\HyperCube.Server.Core.csproj"/>
     </ItemGroup>
-
+    
     <ItemGroup>
-        <Folder Include="Attributes\" />
+        <None Include="../../README.md" Pack="true" PackagePath="/"/>
+        <None Include="../../images/nuget_logo.png" Pack="true" PackagePath="/"/>
     </ItemGroup>
-
 </Project>

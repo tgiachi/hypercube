@@ -13,36 +13,34 @@
         <IsPackable>true</IsPackable>
 
         <!-- Package info -->
-        <PackageId>HyperCube.Core</PackageId>
+        <PackageId>HyperCube.Queue.Core</PackageId>
         <Version>0.0.8</Version>
         <Authors>squid</Authors>
-        <Description>Modular .NET framework for rapid development of console, server, and web backend applications. AOT-optimized with comprehensive utilities and intuitive APIs. Fully documented and performance-oriented.</Description>
+        <Description>Messaging queue abstraction for the HyperCube framework with built-in internal queue provider.</Description>
         <Copyright>Copyright © 2025</Copyright>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/tgiachi/hypercube</PackageProjectUrl>
         <RepositoryUrl>https://github.com/tgiachi/hypercube</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageTags>framework;utilities;aot;dotnet;hypercube</PackageTags>
+        <PackageTags>framework;queue;messaging;hypercube</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>nuget_logo.png</PackageIcon>
 
-        <!-- AOT related settings -->
-        <IsAotCompatible>true</IsAotCompatible>
-        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
-        <EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
-        <EnableAotAnalyzer>true</EnableAotAnalyzer>
-
         <!-- Warning suppression -->
-        <!-- Everything is controlled by the analyzers -->
         <NoWarn>$(NoWarn);IL3050;IL2026</NoWarn>
     </PropertyGroup>
 
- 
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.4" />
+        <PackageReference Include="System.Reactive" Version="6.0.1" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Vecc.YamlDotNet.Analyzers.StaticGenerator" PrivateAssets="all" Version="16.3.0" />
-        <PackageReference Include="YamlDotNet" Version="16.3.0" />
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+        <ProjectReference Include="..\HyperCube.Core\HyperCube.Core.csproj" />
+        <ProjectReference Include="..\HyperCube.Server.Core\HyperCube.Server.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="0.0.8"></a>
+## [0.0.8](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.8) (2025-04-13)
+
+### Features
+
+* **Hypercube.sln:** add HyperCube.Queue.Core project to solution ([0eb7260](https://www.github.com/tgiachi/hypercube/commit/0eb7260b48874aecb30b61d084d3388a1764b6c9))
+* **queue:** add interfaces for queue listeners, publishers, and providers ([d07454a](https://www.github.com/tgiachi/hypercube/commit/d07454adb58cc8799dc3fdbc1961d67d8c21492b))
+* **QueueService.cs:** add QueueService class with methods to create publishers, listeners, and publish messages ([160099c](https://www.github.com/tgiachi/hypercube/commit/160099c2b141cfaad6786f33eda8ba8d9b14f23e))
+
 <a name="0.0.7"></a>
 ## [0.0.7](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.7) (2025-04-13)
 

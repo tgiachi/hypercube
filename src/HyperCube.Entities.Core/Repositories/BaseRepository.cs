@@ -13,22 +13,22 @@ namespace HyperCube.Entities.Core.Repositories;
 /// </summary>
 /// <typeparam name="TEntity">The entity type.</typeparam>
 /// <typeparam name="TKey">The type of the entity's primary key.</typeparam>
-public class Repository<TEntity, TKey> : IRepository<TEntity, TKey>
+public class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey>
     where TEntity : BaseEntity<TKey>
     where TKey : IEquatable<TKey>
 {
     private readonly HyperCubeDbContext _dbContext;
     private readonly DbSet<TEntity> _dbSet;
-    private readonly ILogger<Repository<TEntity, TKey>> _logger;
+    private readonly ILogger<BaseRepository<TEntity, TKey>> _logger;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Repository{TEntity, TKey}"/> class.
+    /// Initializes a new instance of the <see cref="BaseRepository{TEntity,TKey}"/> class.
     /// </summary>
     /// <param name="dbContext">The database context.</param>
     /// <param name="logger">The logger.</param>
-    public Repository(
+    public BaseRepository(
         HyperCubeDbContext dbContext,
-        ILogger<Repository<TEntity, TKey>> logger
+        ILogger<BaseRepository<TEntity, TKey>> logger
     )
     {
         _dbContext = dbContext;

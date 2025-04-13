@@ -122,7 +122,7 @@ public static class EntityFrameworkServiceExtensions
         }
 
         // Register generic repository
-        services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+        services.AddScoped(typeof(IRepository<,>), typeof(BaseRepository<,>));
 
         return services;
     }
@@ -138,7 +138,7 @@ public static class EntityFrameworkServiceExtensions
         where TEntity : BaseEntity<TKey>
         where TKey : IEquatable<TKey>
     {
-        services.AddScoped<IRepository<TEntity, TKey>, Repository<TEntity, TKey>>();
+        services.AddScoped<IRepository<TEntity, TKey>, BaseRepository<TEntity, TKey>>();
         return services;
     }
 

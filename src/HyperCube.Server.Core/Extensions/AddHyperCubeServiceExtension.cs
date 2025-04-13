@@ -1,4 +1,5 @@
 using HyperCube.Server.Core.Interfaces.Services;
+using HyperCube.Server.Core.Interfaces.Services.Base;
 using HyperCube.Server.Core.Internal;
 using HyperCube.Server.Core.Types;
 using Microsoft.Extensions.DependencyInjection;

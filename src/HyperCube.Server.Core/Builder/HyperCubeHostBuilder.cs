@@ -6,6 +6,7 @@ using HyperCube.Server.Core.Data.Options.Base;
 using HyperCube.Server.Core.Extensions;
 using HyperCube.Server.Core.Interfaces.Modules;
 using HyperCube.Server.Core.Services;
+using HyperCube.Server.Core.Services.Manager;
 using HyperCube.Server.Core.Types;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

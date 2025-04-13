@@ -1,11 +1,12 @@
 using HyperCube.Postman.Interfaces.Services;
 using HyperCube.Server.Core.Data.Events;
-using HyperCube.Server.Core.Interfaces.Services;
+using HyperCube.Server.Core.Data.Events.Server;
+using HyperCube.Server.Core.Interfaces.Services.Base;
 using HyperCube.Server.Core.Internal;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace HyperCube.Server.Core.Services;
+namespace HyperCube.Server.Core.Services.Manager;
 
 public class HyperCubeServiceManager : IHostedService
 {

@@ -1,4 +1,4 @@
-namespace HyperCube.Server.Core.Interfaces.Services;
+namespace HyperCube.Server.Core.Interfaces.Services.Base;
 
 /// <summary>
 /// Defines a contract for services that can be loaded, started, and stopped within the HyperCube framework.

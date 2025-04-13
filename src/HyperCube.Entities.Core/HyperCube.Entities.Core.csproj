@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IsPackable>true</IsPackable>
+
+        <!-- Package info -->
+        <PackageId>HyperCube.Entities.Core</PackageId>
+        <Version>0.0.1</Version>
+        <Authors>squid</Authors>
+        <Description>Entity framework and database management utilities for the HyperCube framework.</Description>
+        <Copyright>Copyright © 2025</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/tgiachi/hypercube</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/tgiachi/hypercube</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>framework;database;entities;orm;hypercube</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>nuget_logo.png</PackageIcon>
+
+        <!-- Warning suppression -->
+        <NoWarn>$(NoWarn);IL3050;IL2026</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="9.0.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.4">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0-preview.3.efcore.9.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\HyperCube.Core\HyperCube.Core.csproj" />
+        <ProjectReference Include="..\HyperCube.Server.Core\HyperCube.Server.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../../README.md" Pack="true" PackagePath="/" />
+        <None Include="../../images/nuget_logo.png" Pack="true" PackagePath="/" />
+    </ItemGroup>
+
+</Project>

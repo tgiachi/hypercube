@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperCube.Entities.Core", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperCube.Queue.Core", "src\HyperCube.Queue.Core\HyperCube.Queue.Core.csproj", "{AD37F329-DDCD-494C-B365-720BA4B7D403}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperCube.ScriptEngine.Core", "src\HyperCube.ScriptEngine.Core\HyperCube.ScriptEngine.Core.csproj", "{CFB5574F-EAFC-4B7A-82BE-8AEE29A77A9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{AD37F329-DDCD-494C-B365-720BA4B7D403}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD37F329-DDCD-494C-B365-720BA4B7D403}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD37F329-DDCD-494C-B365-720BA4B7D403}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFB5574F-EAFC-4B7A-82BE-8AEE29A77A9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB5574F-EAFC-4B7A-82BE-8AEE29A77A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFB5574F-EAFC-4B7A-82BE-8AEE29A77A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB5574F-EAFC-4B7A-82BE-8AEE29A77A9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

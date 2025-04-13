@@ -5,4 +5,4 @@ namespace HyperCube.Server.Core.Data.Events.Server;
 /// <summary>
 ///  Event that is triggered when the server is stopping.
 /// </summary>
-public record ServerStoppingEvent() : BasePostmanRecordEvent(Guid.NewGuid().ToString());
+public record ServerStoppingEvent() : BasePostmanRecordEvent;

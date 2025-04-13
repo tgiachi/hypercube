@@ -14,7 +14,7 @@
 
         <!-- Package info -->
         <PackageId>HyperCube.ScriptEngine.Core</PackageId>
-        <Version>0.0.1</Version>
+        <Version>0.0.8</Version>
         <Authors>squid</Authors>
         <Description>Script engine core for HyperCube framework. Provides advanced scripting capabilities based on Jint</Description>
         <Copyright>Copyright © 2025</Copyright>
@@ -26,11 +26,7 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>nuget_logo.png</PackageIcon>
 
-        <!-- AOT related settings -->
-        <IsAotCompatible>true</IsAotCompatible>
-        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
-        <EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
-        <EnableAotAnalyzer>true</EnableAotAnalyzer>
+       
 
         <!-- Warning suppression -->
         <!-- Everything is controlled by the analyzers -->
@@ -38,17 +34,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Jint" Version="4.2.2" />
+        <PackageReference Include="Jint" Version="4.2.2"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\HyperCube.Core\HyperCube.Core.csproj" />
-      <ProjectReference Include="..\HyperCube.Postman\HyperCube.Postman.csproj" />
-      <ProjectReference Include="..\HyperCube.Server.Core\HyperCube.Server.Core.csproj" />
+        <ProjectReference Include="..\HyperCube.Core\HyperCube.Core.csproj"/>
+        <ProjectReference Include="..\HyperCube.Postman\HyperCube.Postman.csproj"/>
+        <ProjectReference Include="..\HyperCube.Server.Core\HyperCube.Server.Core.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Attributes\" />
+        <Folder Include="Attributes\"/>
     </ItemGroup>
 
 </Project>

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text;
 using HyperCube.Core.Extensions;
@@ -138,8 +139,16 @@ public static class TypeScriptDocumentationGenerator
     }
 
 
-    private static string ConvertToTypeScriptType(Type type)
+    private static string ConvertToTypeScriptType(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)]
+        Type type
+    )
     {
+        if (type == null)
+        {
+            return "any";
+        }
+
         if (type == typeof(void))
         {
             return "void";
@@ -174,13 +183,17 @@ public static class TypeScriptDocumentationGenerator
         if (type.IsArray)
         {
             var elementType = type.GetElementType();
-            return $"{ConvertToTypeScriptType(elementType!)}[]";
+            return elementType != null
+                ? $"{ConvertToTypeScriptType(elementType)}[]"
+                : "any[]";
         }
 
         if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
         {
             var underlyingType = Nullable.GetUnderlyingType(type);
-            return $"{ConvertToTypeScriptType(underlyingType!)} | null";
+            return underlyingType != null
+                ? $"{ConvertToTypeScriptType(underlyingType)} | null"
+                : "any | null";
         }
 
         // Handle params object[]? case
@@ -268,29 +281,7 @@ public static class TypeScriptDocumentationGenerator
                     $"(arg1: {ConvertToTypeScriptType(typeArgs[0])}, arg2: {ConvertToTypeScriptType(typeArgs[1])}) => {ConvertToTypeScriptType(typeArgs[2])}";
             }
 
-            // Continue with existing generic type handling
-            if (genericTypeDefinition == typeof(Nullable<>))
-            {
-                var underlyingType = Nullable.GetUnderlyingType(type);
-                return $"{ConvertToTypeScriptType(underlyingType!)} | null";
-            }
-
-            if (genericTypeDefinition == typeof(Dictionary<,>))
-            {
-                var genericArgs = type.GetGenericArguments();
-                var keyType = ConvertToTypeScriptType(genericArgs[0]);
-                var valueType = ConvertToTypeScriptType(genericArgs[1]);
-
-                // For string keys, use standard record type
-                if (genericArgs[0] == typeof(string))
-                {
-                    return $"{{ [key: string]: {valueType} }}";
-                }
-
-                // For other keys, use Map
-                return $"Map<{keyType}, {valueType}>";
-            }
-
+            // List<T>
             if (genericTypeDefinition == typeof(List<>))
             {
                 var elementType = type.GetGenericArguments()[0];
@@ -298,38 +289,30 @@ public static class TypeScriptDocumentationGenerator
             }
         }
 
-        // Handle List<T>
-        if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
-        {
-            var elementType = type.GetGenericArguments()[0];
-            return $"{ConvertToTypeScriptType(elementType)}[]";
-        }
-
         // For complex types (classes and structs), generate interfaces
-        if ((type.IsClass || type.IsValueType) && !type.IsPrimitive && !type.IsEnum && type.Namespace != null &&
-            !type.Namespace.StartsWith("System"))
+        [UnconditionalSuppressMessage("AOT", "IL2026:RequiresUnreferencedCode")]
+        string GenerateInterfaceForType(
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)]
+            Type complexType
+        )
         {
             // Generate interface name
-            var interfaceName = $"I{type.Name}";
+            var interfaceName = $"I{complexType.Name}";
 
             // If we've already processed this type, just return the interface name
-            if (_processedTypes.Contains(type))
+            if (!_processedTypes.Add(complexType))
             {
                 return interfaceName;
             }
 
-            // Mark type as processed to prevent infinite recursion
-            _processedTypes.Add(type);
-
             // Start building the interface
             _interfacesBuilder.AppendLine();
             _interfacesBuilder.AppendLine($"/**");
-            _interfacesBuilder.AppendLine($" * Generated interface for {type.FullName}");
+            _interfacesBuilder.AppendLine($" * Generated interface for {complexType.FullName}");
             _interfacesBuilder.AppendLine($" */");
             _interfacesBuilder.AppendLine($"interface {interfaceName} {{");
 
-            // Get properties
-            var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+            var properties = complexType.GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .Where(p => p.CanRead)
                 .ToList();
 
@@ -350,6 +333,12 @@ public static class TypeScriptDocumentationGenerator
             _interfacesBuilder.AppendLine("}");
 
             return interfaceName;
+        }
+
+        if ((type.IsClass || type.IsValueType) && !type.IsPrimitive && !type.IsEnum && type.Namespace != null &&
+            !type.Namespace.StartsWith("System"))
+        {
+            return GenerateInterfaceForType(type);
         }
 
         // Handle enums
@@ -376,6 +365,7 @@ public static class TypeScriptDocumentationGenerator
         // For other complex types, return any
         return "any";
     }
+
 
     private static string FormatConstantValue(object value, Type type)
     {

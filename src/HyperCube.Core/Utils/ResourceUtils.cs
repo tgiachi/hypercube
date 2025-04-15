@@ -24,7 +24,7 @@ public static class ResourceUtils
         var resourcePath = resourceName.Replace('/', '.').Replace('\\', '.');
 
         var fullResourceName = assembly.GetManifestResourceNames()
-            .FirstOrDefault(name => name.EndsWith(resourceName));
+            .FirstOrDefault(name => name.EndsWith(resourcePath));
 
         if (fullResourceName == null)
         {

@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="0.0.10"></a>
+## [0.0.10](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.10) (2025-04-15)
+
 <a name="0.0.9"></a>
 ## [0.0.9](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.9) (2025-04-13)
 

@@ -14,7 +14,7 @@
 
         <!-- Package info -->
         <PackageId>HyperCube.ScriptEngine.Core</PackageId>
-        <Version>0.0.10</Version>
+        <Version>0.0.11</Version>
         <Authors>squid</Authors>
         <Description>Script engine core for HyperCube framework. Provides advanced scripting capabilities based on Jint</Description>
         <Copyright>Copyright © 2025</Copyright>

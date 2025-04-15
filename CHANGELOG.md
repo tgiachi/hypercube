@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="0.0.11"></a>
+## [0.0.11](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.11) (2025-04-15)
+
+### Bug Fixes
+
+* **ResourceUtils.cs:** update resourcePath variable to correctly match resource name ([b228434](https://www.github.com/tgiachi/hypercube/commit/b228434b46b9839f8c8f9ef00f98f478c257066a))
+
 <a name="0.0.10"></a>
 ## [0.0.10](https://www.github.com/tgiachi/hypercube/releases/tag/v0.0.10) (2025-04-15)
 

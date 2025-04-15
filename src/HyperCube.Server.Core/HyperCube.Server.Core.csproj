@@ -14,7 +14,7 @@
 
         <!-- Package info -->
         <PackageId>HyperCube.Server.Core</PackageId>
-        <Version>0.0.10</Version>
+        <Version>0.0.11</Version>
         <Authors>squid</Authors>
         <Description>Core server components for the HyperCube framework. Provides service management, DI, configuration, console, logging, and hosting capabilities.</Description>
         <Copyright>Copyright © 2025</Copyright>

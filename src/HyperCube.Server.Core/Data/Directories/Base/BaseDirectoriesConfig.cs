@@ -75,15 +75,6 @@ public class BaseDirectoriesConfig<TDirectoryEnum> where TDirectoryEnum : struct
             return path;
         }
 
-        // Root is a special case, just return the root directory
-        if (EqualityComparer<TDirectoryEnum>.Default.Equals(
-                directoryType,
-                Enum.Parse<TDirectoryEnum>("Root", true)
-            ))
-        {
-            return Root;
-        }
-
         // For other directories, combine root with the converted name
         path = Path.Combine(Root, _nameConverter(directoryType));
         _directoryPaths[directoryType] = path;
@@ -112,6 +103,7 @@ public class BaseDirectoriesConfig<TDirectoryEnum> where TDirectoryEnum : struct
         var directoryTypes = Enum.GetValues<TDirectoryEnum>()
             .Where(d => !d.ToString().Equals(rootName, StringComparison.OrdinalIgnoreCase))
             .ToList();
+
 
         // Create all subdirectories
         foreach (var directory in directoryTypes)
